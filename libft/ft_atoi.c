@@ -1,32 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: korojrat <korojrat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/17 20:25:59 by korojrat          #+#    #+#             */
-/*   Updated: 2023/05/16 17:22:48 by korojrat         ###   ########.fr       */
+/*   Created: 2023/05/16 17:23:54 by korojrat          #+#    #+#             */
+/*   Updated: 2023/05/16 17:45:17 by korojrat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcat(char *dst, const char *src, size_t n)
+int	ft_atoi(const char *nptr)
 {
-	size_t	end;
-	size_t	len;
+	int	i;
+	int	sign;
+	int	val;
 
-	len = 0;
-	while (dst[len] && len < n)
-		len += 1;
-	end = len;
-	while (src[len - end] && len + 1 < n)
-	{
-		dst[len] = src[len - end];
-		len += 1;
-	}
-	if (end < n)
-		dst[len] = '\0';
-	return (end + ft_strlen(src));
+	i = 0;
+	sign = 1;
+	val = 0;
+	if (nptr[i] == 0)
+		return (0);
+	while (ft_isspace(nptr[i]))
+		i += 1;
+	if (nptr[i] == '-' || nptr[i] == '+')
+		if (nptr[i++] == '-')
+			sign = -1;
+	while (nptr[i] >= '0' && nptr[i] <= '9')
+		val = (val * 10) + (nptr[i++] - '0');
+	return (val * sign);
 }
