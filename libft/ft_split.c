@@ -6,13 +6,13 @@
 /*   By: korojrat <korojrat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 22:55:47 by korojrat          #+#    #+#             */
-/*   Updated: 2023/05/23 02:56:00 by korojrat         ###   ########.fr       */
+/*   Updated: 2023/05/23 14:00:27 by korojrat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-unsigned int	ft_getarr_size(char const *s, char c)
+static unsigned int	ft_getarr_size(char const *s, char c)
 {
 	unsigned int	i;
 	unsigned int	arr_size;
@@ -39,7 +39,7 @@ unsigned int	ft_getarr_size(char const *s, char c)
 	return (arr_size);
 }
 
-void	ft_get_next_str(char **next_str, unsigned int *next_str_len, char c)
+static void	ft_get_next_str(char **next_str, unsigned int *next_str_len, char c)
 {
 	unsigned int	i;
 

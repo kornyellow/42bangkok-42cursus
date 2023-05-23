@@ -6,13 +6,13 @@
 /*   By: korojrat <korojrat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 01:14:06 by korojrat          #+#    #+#             */
-/*   Updated: 2023/05/23 02:55:45 by korojrat         ###   ########.fr       */
+/*   Updated: 2023/05/23 13:56:26 by korojrat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_getlen(long n)
+static int	ft_getlen(long n)
 {
 	size_t	len;
 
@@ -25,7 +25,7 @@ int	ft_getlen(long n)
 	return (len);
 }
 
-char	*ft_getstr(char *res, long nbr, int len, int is_neg)
+static char	*ft_getstr(char *res, long nbr, int len, int is_neg)
 {
 	if (nbr != 0)
 		res = malloc(sizeof(char) * (len + 1));

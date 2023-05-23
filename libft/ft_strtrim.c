@@ -6,13 +6,13 @@
 /*   By: korojrat <korojrat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 01:42:34 by korojrat          #+#    #+#             */
-/*   Updated: 2023/05/23 02:56:09 by korojrat         ###   ########.fr       */
+/*   Updated: 2023/05/23 13:58:20 by korojrat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_inset(char c, char const *set)
+static int	ft_inset(char c, char const *set)
 {
 	while (*set)
 		if (c == *set ++)
