@@ -6,7 +6,7 @@
 /*   By: korojrat <korojrat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 22:55:47 by korojrat          #+#    #+#             */
-/*   Updated: 2023/05/23 14:00:27 by korojrat         ###   ########.fr       */
+/*   Updated: 2023/05/24 17:28:53 by korojrat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,30 +57,44 @@ static void	ft_get_next_str(char **next_str, unsigned int *next_str_len, char c)
 	}
 }
 
+static void	*ft_free(char **arr, unsigned int n)
+{
+	unsigned int	i;
+
+	i = 0;
+	while (i < n)
+		free(arr[i++]);
+	free(arr);
+	return (NULL);
+}
+
+// var[0] = i
+// var[1] = next_str_len
 char	**ft_split(char const *s, char c)
 {
 	char			**arr;
 	unsigned int	arr_size;
 	char			*next_str;
-	unsigned int	next_str_len;
-	unsigned int	i;
+	unsigned int	var[2];
 
 	if (!s)
 		return (NULL);
+	if (*s == 0)
+		return (ft_calloc(1, sizeof(char **)));
 	arr_size = ft_getarr_size(s, c);
 	arr = (char **) malloc(sizeof(char *) * (arr_size + 1));
 	if (!arr)
 		return (NULL);
-	i = 0;
-	next_str_len = 0;
+	var[0] = 0;
+	var[1] = 0;
 	next_str = (char *) s;
-	while (i < arr_size)
+	while (var[0] < arr_size)
 	{
-		ft_get_next_str(&next_str, &next_str_len, c);
-		arr[i] = (char *) malloc(sizeof(char) * (next_str_len + 1));
-		ft_strlcpy(arr[i], next_str, next_str_len + 1);
-		i ++;
+		ft_get_next_str(&next_str, &var[1], c);
+		arr[var[0]] = (char *) malloc(sizeof(char) * (var[1] + 1));
+		if (arr[var[0]] == NULL)
+			return (ft_free(arr, var[0]));
+		ft_strlcpy(arr[var[0]++], next_str, var[1] + 1);
 	}
-	arr[i] = NULL;
-	return (arr);
+	return (arr[var[0]] = NULL, arr);
 }
